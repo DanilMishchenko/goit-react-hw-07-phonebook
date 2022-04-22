@@ -1,5 +1,5 @@
-import { Phonebook } from './Container.styled';
+import { SectionContainer } from './Container.styled';
 
 export const Container = ({ children }) => {
-  return <Phonebook>{children}</Phonebook>;
+  return <SectionContainer>{children}</SectionContainer>;
 };

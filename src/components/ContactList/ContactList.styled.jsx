@@ -1,15 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Section = styled.div`
-  padding: 16px;
-  color: blue;
-  background-color: yellow;
-`;
-
-export const Title = styled.h2`
-  margin-bottom: 16px;
-`;
-
 export const List = styled.ul`
   border-radius: 8px;
   outline: 2px solid blue;
@@ -34,10 +24,13 @@ export const Item = styled.li`
   }
 `;
 
-export const Information = styled.span``;
+export const Information = styled.span`
+  margin-left: 4px;
+`;
 
 export const DeleteButton = styled.button`
   padding: 4px 8px;
+  margin-right: 4px;
   font-size: 12px;
   font-weight: 500;
   color: blue;

@@ -1,15 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Section = styled.div`
-  padding: 16px;
-  color: #fff;
-  background-color: blue;
-`;
-
-export const Title = styled.h2`
-  margin-bottom: 16px;
-`;
-
 export const PhonebookForm = styled.form`
   display: flex;
   flex-direction: column;

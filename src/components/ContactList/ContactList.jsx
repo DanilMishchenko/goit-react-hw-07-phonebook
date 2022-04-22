@@ -1,17 +1,9 @@
 import PropTypes from 'prop-types';
-import {
-  Section,
-  Title,
-  List,
-  Item,
-  Information,
-  DeleteButton,
-} from './ContactList.styled';
+import { List, Item, Information, DeleteButton } from './ContactList.styled';
 
 export const ContactList = ({ contacts, onDeleteContacts, children }) => {
   return (
-    <Section>
-      <Title>Contacts</Title>
+    <>
       {children}
       <List>
         {contacts.map(({ id, name, number }) => (
@@ -25,7 +17,7 @@ export const ContactList = ({ contacts, onDeleteContacts, children }) => {
           </Item>
         ))}
       </List>
-    </Section>
+    </>
   );
 };
 
