@@ -26,6 +26,7 @@ export const Item = styled.li`
 
 export const Information = styled.span`
   margin-left: 4px;
+  border-bottom: 1px solid black;
 `;
 
 export const DeleteButton = styled.button`

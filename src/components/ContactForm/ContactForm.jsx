@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
+import { useAddContactMutation } from 'redux/contactsSlice';
 import {
   PhonebookForm,
   PhonebookLabel,
@@ -8,9 +8,10 @@ import {
   ButtonAddContact,
 } from './ContactForm.styled';
 
-export const ContactsForm = ({ onChange, children }) => {
+export const ContactsForm = ({ children }) => {
+  const [addContact] = useAddContactMutation();
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const nameInputId = nanoid(4);
   const numderInputId = nanoid(4);
@@ -20,18 +21,26 @@ export const ContactsForm = ({ onChange, children }) => {
   };
 
   const handleNumberChange = e => {
-    setNumber(e.target.value);
+    setPhone(e.target.value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    onChange({ name, number });
+    handleAddContact({ name, phone });
     resetFrom();
+  };
+
+  const handleAddContact = async contact => {
+    try {
+      await addContact(contact);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const resetFrom = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -53,7 +62,7 @@ export const ContactsForm = ({ onChange, children }) => {
         <InputName
           type="tel"
           name="number"
-          value={number}
+          value={phone}
           onChange={handleNumberChange}
           id={numderInputId}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -64,8 +73,4 @@ export const ContactsForm = ({ onChange, children }) => {
       </PhonebookForm>
     </>
   );
-};
-
-ContactsForm.propTypes = {
-  onChange: PropTypes.func.isRequired,
 };

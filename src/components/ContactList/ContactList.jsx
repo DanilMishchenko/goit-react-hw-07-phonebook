@@ -1,18 +1,19 @@
-// import PropTypes from 'prop-types';
-import { useGetContactsQuery } from 'redux/contactsSlice';
+import PropTypes from 'prop-types';
+import { useDeleteContactMutation } from 'redux/contactsSlice';
 import { List, Item, Information, DeleteButton } from './ContactList.styled';
 
 export const ContactList = ({ contacts, onDeleteContacts, children }) => {
+  const [deleteContact] = useDeleteContactMutation();
   return (
     <>
       {children}
       <List>
-        {contacts.map(({ id, name, number }) => (
+        {contacts.map(({ id, name, phone }) => (
           <Item key={id}>
             <Information>
-              {name}: {number}
+              {name}: {phone}
             </Information>
-            <DeleteButton type="button" onClick={() => onDeleteContacts(id)}>
+            <DeleteButton type="button" onClick={() => deleteContact(id)}>
               Delete
             </DeleteButton>
           </Item>
@@ -22,7 +23,6 @@ export const ContactList = ({ contacts, onDeleteContacts, children }) => {
   );
 };
 
-// ContactList.propTypes = {
-//   contacts: PropTypes.array.isRequired,
-//   onDeleteContacts: PropTypes.func.isRequired,
-// };
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
+};
